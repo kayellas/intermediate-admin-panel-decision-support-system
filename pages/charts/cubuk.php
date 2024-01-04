@@ -42,7 +42,6 @@ foreach ($query as $data) {
 <div style="width: 800px;">
   <canvas id="myChart"></canvas>
 </div>
-<!--     <div id="drawChart" style="width: 100%; height: 500px;"></div>-->
  
 <script>
 const labels = <?php echo json_encode($kategori_ad)?>;

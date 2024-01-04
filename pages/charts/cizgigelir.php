@@ -10,7 +10,6 @@
 ?>
 <html>
   <head>
-    <div class="lineline">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
@@ -48,8 +47,7 @@
 
             chart.draw(data, options);
         }
-    </script>
-    </div>
+    </script> 
   </head>
   <body>
     <div id="curve_chart" style="width: 900px; height: 500px"></div>

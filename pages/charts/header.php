@@ -98,7 +98,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="chartjs.html" class="nav-link active">
+                <a href="chart.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ChartJS</p>
                 </a>
@@ -156,4 +156,121 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <script src="../../app.js"></script>
+    <!-- Filtreleme seçenekleri -->
+  <div>
+    <label for="filterCategory">Kategoriye Göre Filtrele:</label>
+    <select id="filterCategory" onchange="applyFilters()">
+      <option value="all">Hepsi</option>
+      <option value="1">Soft Drinks</option>
+      <option value="2">Sıcak İçecekler</option>
+      <option value="3">Alkollü İçecekler</option>
+
+     
+      <!-- Diğer kategori seçenekleri -->
+    </select>
+    <label for="filterDate">Yıla Göre Filtrele:</label>
+    <select id="filterDate"  onchange="applyFilters()">
+    <option value="all">Hepsi</option>
+    <option value="today">2023</option>
+    <option value="thisWeek">2022</option>
+      <!-- Diğer tarih seçenekleri -->
+    </select>
+  </div>
+
+ 
+ 
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  
+  const database = require('../db/database.js');
+
+  
+    // Filtreleme işlemini gerçekleştiren bir fonksiyon:
+    function filterData() {
+      var selectedDate = document.getElementById('filterDate').value;
+  
+      // Sunucudan veri çekme 
+      fetch(`/api/data?date=${selectedDate}`)
+        .then(response => response.json())
+        .then(data => {
+          // Verileri kullanarak tüm grafikleri güncelleme
+          updateAllCharts(data);
+        })
+        .catch(error => console.error('Veri çekme hatası:', error));
+    }
+  
+    // Tüm grafikleri güncelleyen fonksiyon
+    function updateAllCharts(data) {
+      updateChart("areaChart", data.areaChartData, "Area Chart");
+      updateChart("lineChart", data.lineChartData, "Line Chart");
+      updateChart("donutChart", data.donutChartData, "Donut Chart");
+    }
+
+    function getData(selectedCategory, selectedDate, callback) {
+      let query = 'SELECT * FROM urun WHERE 1';
+    
+      // Kategoriye göre filtreleme
+      if (selectedCategory !== 'all') {
+        query += ` AND kategori = '${selectedCategory}'`;
+      }
+    
+      // Tarihe göre filtreleme
+      if (selectedDate !== 'all') {
+        // Örneğin: AND tarih = '2023-12-27'
+      }
+    
+      // Sorguyu çalıştır
+      connection.query(query, (error, results, fields) => {
+        if (error) {
+          console.error('Veri çekme hatası: ' + error.stack);
+          callback(error, null);
+          return;
+        }
+    
+        // Veritabanından gelen verileri kullanarak istediğiniz işlemleri gerçekleştirin
+        callback(null, results);
+      });
+    }
+    
+  
+    // Tek bir grafik güncelleyen genel fonksiyon
+    function updateChart(chartId, newData, chartTitle) {
+      var chart = new Chart(document.getElementById(chartId).getContext('2d'), {
+        type: 'line', // Grafik türünü istediğiniz gibi değiştirebilirsiniz
+        data: {
+          labels: newData.labels,
+          datasets: [
+            {
+              label: chartTitle,
+              data: newData.data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'day'
+              }
+            },
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  
+</script>
+
+
+
+
+
+
+

@@ -94,7 +94,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
+    <a href="index.php" class="brand-link">
       <span class="brand-text font-weight-light">Tedarik Zinciri Yönetimi </span>
     </a>
 
@@ -140,7 +140,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="pages/charts/chart.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ChartJS</p>
                 </a>
@@ -352,10 +352,10 @@
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                      <a class="nav-link active" href="#piechart" data-toggle="tab">Area</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                      <a class="nav-link" href="#line" data-toggle="tab">Donut</a>
                     </li>
                   </ul>
                 </div>
@@ -363,12 +363,12 @@
               <div class="card-body">
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
+                  <div class="chart tab-pane active" id="piechart"
                        style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                      <canvas id="piechart" height="300" style="height: 300px;"></canvas>
                    </div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                  <div class="chart tab-pane" id="line" style="position: relative; height: 300px;">
+                    <canvas id="line" height="300" style="height: 300px;"></canvas>
                   </div>
                 </div>
               </div><!-- /.card-body -->
@@ -509,39 +509,7 @@
           <section class="col-lg-5 connectedSortable">
 
             <!-- Map card -->
-            <div class="card bg-gradient-primary">
-              <div class="card-header border-0">
-                <!-- card tools -->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                    <i class="far fa-calendar-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-
-              <!-- /.card-body-->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <div id="sparkline-1"></div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-2"></div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div id="sparkline-3"></div>
-                  </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
-              </div>
-            </div>
+           
             <!-- /.card -->
 
             <!-- solid sales graph -->
@@ -562,7 +530,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <canvas class="chart" id="myCharti" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; background:lightsteelblue;"></canvas>
               </div>
               <!-- /.card-body -->
               <div class="card-footer bg-transparent">
@@ -635,11 +603,12 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+<footer class="main-footer">
+    <strong>PROF. DR. VAHAP TECİM - KDS PROJESİ İÇİN YAPILMIŞTIR. (ZEYNEP KAYA) &copy; 2023-2024</strong>
+</footer>
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>PROF. DR. VAHAP TECİM - KDS PROJESİ İÇİN YAPILMIŞTIR. (ZEYNEP KAYA) &copy; 2023-2024</strong>
-  </footer>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -648,6 +617,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
@@ -689,3 +659,6 @@
 
 </body>
 </html>
+
+
+<?php include("footer.php")?>

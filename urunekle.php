@@ -87,7 +87,7 @@
               </li>
     
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="pages/charts/chart.php" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
                     Grafikler
@@ -96,7 +96,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../kds/pages/charts/chartjs.html" class="nav-link">
+                    <a href="../kds/pages/charts/chart.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>ChartJS</p>
                     </a>

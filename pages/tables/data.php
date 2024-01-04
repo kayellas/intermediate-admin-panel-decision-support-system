@@ -101,9 +101,9 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 <footer class="main-footer">
     <strong>PROF. DR. VAHAP TECİM - KDS PROJESİ İÇİN YAPILMIŞTIR. (ZEYNEP KAYA) &copy; 2023-2024</strong>
 </footer>
+</div>
+<!-- /.content-wrapper -->
 
