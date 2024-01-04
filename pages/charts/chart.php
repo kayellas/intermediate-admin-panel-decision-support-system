@@ -1,161 +1,12 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tedarik Zincir Yönetimi</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index.html" class="nav-link">Dashboard</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
-      <span class="brand-text font-weight-light">Tedarik Zincir Yönetimi</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="../../index.html" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Grafikler
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="chartjs.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Tablolar
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-              <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-          </li>
-          <li class="nav-item">
-            <a href="../../urunekle.html" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Ürün Ekle
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Grafikler</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../../index.html">Anasayfa</a></li>
-              <li class="breadcrumb-item active">Grafikler</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
+<?php include("header.php")?>
+<?php 
+    $conn = mysqli_connect('localhost', 'root', '', 'kds' );
+    if (!$conn) {
+        echo "bağlantı başarısız: " . mysqli_connect_error();
+    } else {
+        echo "bağlandı";
+    }
+?>
     <!-- Filtreleme seçenekleri -->
   <div>
     <label for="filterCategory">Kategoriye Göre Filtrele:</label>
@@ -282,19 +133,19 @@
   
  -->
  
- 
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
   
-  const database = require('../db/database.js');
+  const database = require('../../database.js');
 
   
     // Filtreleme işlemini gerçekleştiren bir fonksiyon:
     function filterData() {
       var selectedDate = document.getElementById('filterDate').value;
   
-      // Sunucudan veri çekme 
+      // Sunucudan veri çekme (bu kısmı kendi veri kaynağınıza uyarlamalısınız)
       fetch(`/api/data?date=${selectedDate}`)
         .then(response => response.json())
         .then(data => {
@@ -309,6 +160,7 @@
       updateChart("areaChart", data.areaChartData, "Area Chart");
       updateChart("lineChart", data.lineChartData, "Line Chart");
       updateChart("donutChart", data.donutChartData, "Donut Chart");
+      // Diğer grafikleri de aynı şekilde güncelleyebilirsiniz
     }
 
     function getData(selectedCategory, selectedDate, callback) {
@@ -321,6 +173,7 @@
     
       // Tarihe göre filtreleme
       if (selectedDate !== 'all') {
+        // İhtiyaca göre tarih filtreleme kısmını güncelleyin
         // Örneğin: AND tarih = '2023-12-27'
       }
     
@@ -373,6 +226,41 @@
 </script>
 
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Urun Adı', 'Urun Satış Miktarı'],
+        <?php 
+        $sql = "SELECT * FROM urun ";
+        $fire = mysqli_query($conn, $sql);
+            while ($result = mysqli_fetch_assoc($fire)) {
+            echo "['".$result["urun_ad"]."',".$result["urun_miktar"]."],";}
+        ?>
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+</script>
+
+
+
+
+
+
+
 
 
 
@@ -405,6 +293,7 @@
               </div>
               <!-- /.card-body -->
             </div>
+            
             <!-- /.card -->
 
             <!-- DONUT CHART -->
@@ -556,6 +445,7 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+    
   $(function () {
     /* ChartJS
      * -------
@@ -567,7 +457,7 @@
     //--------------
 
     // Get context with jQuery - using jQuery's .get() method.
-    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+   /*  var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -622,12 +512,12 @@
       type: 'line',
       data: areaChartData,
       options: areaChartOptions
-    })
+    }) */
 
     //-------------
     //- LINE CHART -
     //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+   /*  var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
     var lineChartOptions = $.extend(true, {}, areaChartOptions)
     var lineChartData = $.extend(true, {}, areaChartData)
     lineChartData.datasets[0].fill = false;
@@ -638,12 +528,39 @@
       type: 'line',
       data: lineChartData,
       options: lineChartOptions
-    })
+    }) */
 
     //-------------
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
+    
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
+        var combinedData = [['Urun Adı', 'Urun Satış Miktarı']];
+
+        <?php
+        $sql = "SELECT * FROM urun ";
+        $fire = mysqli_query($conn, $sql);
+        while ($result = mysqli_fetch_assoc($fire)) {
+            echo "combinedData.push(['" . $result["urun_ad"] . "'," . $result["urun_miktar"] . "]);";
+        }
+        ?>
+        var donutData = google.visualization.arrayToDataTable(combinedData);
+
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(donutData, options);
+      }
+
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [
@@ -677,7 +594,7 @@
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+ /*    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
     var pieData        = donutData;
     var pieOptions     = {
       maintainAspectRatio : false,
@@ -689,12 +606,12 @@
       type: 'pie',
       data: pieData,
       options: pieOptions
-    })
-
+    }) 
+   */
     //-------------
     //- BAR CHART -
     //-------------
-    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+  /*   var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
     var temp1 = areaChartData.datasets[1]
@@ -711,12 +628,12 @@
       type: 'bar',
       data: barChartData,
       options: barChartOptions
-    })
+    }) */
 
     //---------------------
     //- STACKED BAR CHART -
     //---------------------
-    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+   /*  var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
     var stackedBarChartData = $.extend(true, {}, barChartData)
 
     var stackedBarChartOptions = {
@@ -736,11 +653,7 @@
       type: 'bar',
       data: stackedBarChartData,
       options: stackedBarChartOptions
-    })
+    }) */
   })
 
 </script>
-<script src="path/to/your/charts.js"></script>
-
-</body>
-</html>

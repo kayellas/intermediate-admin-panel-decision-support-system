@@ -1,6 +1,13 @@
 <?php include("header.php")?>
-
-
+<?php 
+    $conn = mysqli_connect('localhost', 'root', '', 'kds' );
+    if (!$conn) {
+        echo "bağlantı başarısız: " . mysqli_connect_error();
+    } else {
+        echo "bağlandı";
+    }
+    ?>
+   
     <!-- Filtreleme seçenekleri -->
   <div>
     <label for="filterCategory">Kategoriye Göre Filtrele:</label>
@@ -22,38 +29,8 @@
     </select>
   </div>
 
-
-  <!-- ChartJS ve filtreleme için JavaScript
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    function applyFilters() {
-      const selectedCategory = document.getElementById('filterCategory').value;
-      const selectedDate = document.getElementById('filterDate').value;
-
-      // Sunucudan veri çekme
-      fetch(`/api/data?category=${selectedCategory}&date=${selectedDate}`)
-        .then(response => response.json())
-        .then(data => {
-          // Verileri kullanarak grafikleri güncelleme
-          updateCharts(data);
-        })
-        .catch(error => console.error('Veri çekme hatası:', error));
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // Sayfa yüklendiğinde varsayılan filtreleme uygula
-      applyFilters();
-    });
-
-    function updateCharts(data) {
-      // Veri varsa, burada Chart.js veya başka bir kütüphane ile grafikleri güncelle
-      // Örnek olarak Chart.js kullanımı:
-      // ...
-    }
-  </script>  -->
-
-<!-- <body>
-  <script>
+  
+<script>
     // JavaScript kodları buraya gelir
   
     // Filtreleme işlemini gerçekleştiren bir fonksiyon:
@@ -123,16 +100,16 @@
       });
     }
   </script>
-</body>
+
   
- -->
+
  
  
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
   
-  const database = require('../db/database.js');
+  const database = require('../../database.js');
 
   
     // Filtreleme işlemini gerçekleştiren bir fonksiyon:
@@ -218,13 +195,6 @@
     }
   
 </script>
-
-
-
-
-
-
-
 
     <!-- Main content -->
     <section class="content">
@@ -537,8 +507,8 @@
       type: 'pie',
       data: pieData,
       options: pieOptions
-    })
-
+    }) 
+  
     //-------------
     //- BAR CHART -
     //-------------

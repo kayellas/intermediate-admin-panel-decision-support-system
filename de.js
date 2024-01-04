@@ -23,8 +23,8 @@ if (connection.connect_error) {
             console.log("<td>" + row["urun_miktar"] + "</td>");
             console.log("<td>" + row["urun_tarih"] + "</td>");
             console.log("<td>");
-            console.log("<a href='edit.php?id=" + row["personel_id"] + "' style='color: orange'>Düzenle</a>");
-            console.log("<a href='delete.php?id=" + row["personel_id"] + "' style='color: red'>Sil</a>");
+            console.log("<a href='edit.php?id=" + row["urun_id"] + "' style='color: orange'>Düzenle</a>");
+            console.log("<a href='delete.php?id=" + row["urun_id"] + "' style='color: red'>Sil</a>");
             console.log("</td>");
             console.log("</tr>");
         });
