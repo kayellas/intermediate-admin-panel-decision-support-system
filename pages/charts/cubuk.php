@@ -14,7 +14,10 @@
     <script type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 </head>
-
+<div id="bar">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 <?php
 $conn = new mysqli ('localhost', 'root', '', 'kds');
 $query= $conn->query("SELECT kategori.kategori_ad, urun.urun_ad AS en_cok_satan_urun,
@@ -87,6 +90,7 @@ const config = {
         config
     );
 </script>
+</div>
 </body>
 </html>
 

@@ -10,6 +10,7 @@
 ?>
 <html>
   <head>
+    <div id="line">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
@@ -39,13 +40,15 @@
             legend: { position: 'bottom' }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('line'));
 
             chart.draw(data, options);
         }
         </script>
+        <body>
+            <div id="line" style="width: 900px; height: 500px"></div>
+        </body>
+    </div>
   </head>
-  <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
-  </body>
+  
 </html>

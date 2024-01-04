@@ -1,3 +1,12 @@
+<?php 
+    $conn = mysqli_connect('localhost', 'root', '', 'kds' );
+    if (!$conn) {
+        echo "bağlantı başarısız: " . mysqli_connect_error();
+    } else {
+        echo "bağlandı";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -46,7 +55,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">Anasayfa</a>
+        <a href="index.php" class="nav-link">Anasayfa</a>
       </li>
     </ul>
 
@@ -111,7 +120,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="../kds/index.html" class="nav-link active">
+            <a href="../kds/index.php" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -184,7 +193,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../kds/index.html">Anasayfa</a></li>
+              <li class="breadcrumb-item"><a href="../kds/index.php">Anasayfa</a></li>
               <li class="breadcrumb-item active">DASHBOARD</li>
             </ol>
           </div><!-- /.col -->
@@ -204,29 +213,31 @@
               <div class="inner">
                 <span id="totalProducts"></span>
                 <script>
-                  function updateTotalProducts(total) {
-                    $('#totalProducts').text(total);
-                  }
+                  <?php
+                            $servername= "localhost";
+                            $username="root";
+                            $password="";
+                            $database="kds";
+                            
+                            $connection= new mysqli($servername,$username,$password,$database);
+                            if($connection->connect_error){
+                                die("Connection failed". $connection->connect_error);
+                            }
+                            $sql= "SELECT COUNT(*) as urun FROM urun";
+                            $result=$connection->query($sql);
 
-                  $(document).ready(function () {
-                      $.ajax({
-                          url: "http://localhost:3000/api/urun",
-                          method: "GET",
-                          success: function (sonuc) {
-                            var totalProducts = sonuc.length; 
-                            updateTotalProducts(totalProducts);
-
-                            updateSalesChart(sonuc);
-                          },
-                          error: function (hata) {
-                              console.log("HATA OLUŞTU", hata);
+                            if ($result->num_rows > 0) {
+                              $row = $result->fetch_assoc();
+                              $urun = $row['urun'];
+                          } else {
+                              $urun = 0;
                           }
-                      });
-                  });
-              </script>
-                <h3>57</h3> 
+                ?>                            
+                </script>
 
-                <p>Ürün Sayısı</p>
+                <h1><?php echo $urun; ?></h1>
+                <p>Toplam Ürün Sayısı</p> 
+
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -239,6 +250,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
+                
                 <h3>73<sup style="font-size: 20px">%</sup></h3>
 
                 <p>Satış Miktar Oranı</p>
@@ -254,9 +266,28 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>7</h3>
+              <?php
+                            $servername= "localhost";
+                            $username="root";
+                            $password="";
+                            $database="kds";
+                            
+                            $connection= new mysqli($servername,$username,$password,$database);
+                            if($connection->connect_error){
+                                die("Connection failed". $connection->connect_error);
+                            }
+                            $sql= "SELECT COUNT(*) as tedarik FROM tedarik";
+                            $result=$connection->query($sql);
 
-                <p>Total Tedarikçi Sayısı</p>
+                            if ($result->num_rows > 0) {
+                              $row = $result->fetch_assoc();
+                              $tedarik = $row['tedarik'];
+                          } else {
+                              $tedarik = 0;
+                          }
+                ?>
+                <h1><?php echo $tedarik; ?></h1>
+                <p>Toplam Tedarikçi Sayısı</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -269,7 +300,32 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>₺ 254.590.10</h3>
+              <?php
+                            $servername= "localhost";
+                            $username="root";
+                            $password="";
+                            $database="kds";
+                            
+                            $connection= new mysqli($servername,$username,$password,$database);
+                            if($connection->connect_error){
+                                die("Connection failed". $connection->connect_error);
+                            }
+                            $sql= "SELECT EXTRACT(year FROM urun.urun_tarih) AS yil,
+                            SUM(urun.urun_fiyat) AS yillara_göre_gelir
+                            FROM urun
+                            WHERE EXTRACT(year FROM urun.urun_tarih) = 2023
+                            GROUP BY urun.urun_tarih
+                            ORDER BY yil;";
+                            $result=$connection->query($sql);
+
+                            if ($result->num_rows > 0) {
+                              $row = $result->fetch_assoc();
+                              $yillara_göre_gelir = $row['yillara_göre_gelir'];
+                          } else {
+                              $yillara_göre_gelir = 0;
+                          }
+                ?>
+                <h1><?php echo $yillara_göre_gelir; ?></h1>
 
                 <p>Yıllık Toplam Gelir</p>
               </div>
@@ -294,21 +350,6 @@
                   Satışlar
                 </h3>
                 <div class="card-tools">
-
-                <!-- <script>
-                    $(document).ready(function(){
-                        $.ajax({
-                            url:"http://localhost:3000/api/urun",
-                            method:"GET",
-                            success:function(sonuc){
-                              updateSalesChart(sonuc);
-                            },
-                            error: function (error) {console.log("HATA OLUŞTU",error);
-                          }
-                        })
-                    })
-                </script> -->
-
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
                       <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
@@ -342,15 +383,7 @@
                   Son Aktiviteler
                 </h3>
 
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                  </ul>
-                </div>
+               
               </div>
               <!-- /.card-header -->
               <div class="card-body">
