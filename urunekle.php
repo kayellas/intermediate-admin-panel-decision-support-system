@@ -160,7 +160,7 @@
                             <div class="form-group row">
                                 <label>urun_fiyat</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="urun_fiyat" name="urun_fiyat" required>
+                                    <input type="float" class="form-control" id="urun_fiyat" name="urun_fiyat" required>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <div class="form-group row">
                                 <label>kategori_id</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="kategori_id" name="kategori_id" required>
+                                    <input type="number" class="form-control" id="kategori_id" name="kategori_id" required>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                             <div class="form-group row">
                                 <label>urun_miktar</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="urun_miktar" name="urun_miktar" required>
+                                    <input type="float" class="form-control" id="urun_miktar" name="urun_miktar" required>
                                 </div>
                             </div>
                         </div>
@@ -211,6 +211,7 @@
 <form action="#" method="Post">
     <script src="admin.js"></script>
     <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $msg="Başarı";
     
     $urun_ad=$_POST['urun_ad'];
@@ -220,25 +221,24 @@
     $urun_tarih = $_POST['urun_tarih'];
 
     $conn = new mysqli('localhost','root','','kds');
-    if($conn->connect_error){
-      die('Connection Failed : ' .$conn->connect_error);
-    }else{
-       $stmt = $conn->prepare("insert into urun(urun_ad,urun_fiyat,kategori_id,urun_miktar,urun_tarih)
+    if ($conn->connect_error) {
+      die('Connection Failed : ' . $conn->connect_error);
+    } else {
+      $stmt = $conn->prepare("insert into urun(urun_ad,urun_fiyat,kategori_id,urun_miktar,urun_tarih)
           values(?,?,?,?,?)");
-       $stmt->bind_param("ssiss",$urun_ad,$urun_fiyat,$kategori_id,$urun_miktar,$urun_tarih);
-       $stmt->execute();      
-       $stmt->close();
-       $conn->close();
+      $stmt->bind_param("siiis", $urun_ad, $urun_fiyat, $kategori_id, $urun_miktar, $urun_tarih);
+      $stmt->execute();
+      $stmt->close();
+      $conn->close();
     }
+  }
 
-    //my other php code here
-        
-    
+    //my other php code here 
 ?>
 </div>
 </form>
 
-    <script>
+<script>
         function showUserForm() {
             document.getElementById("user-form").style.display = "block";
         }

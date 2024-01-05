@@ -11,7 +11,10 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 
+
 <!-- 1. -->
+<body>
+  
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
@@ -27,12 +30,13 @@
             SUM(urun_miktar) AS toplam_miktar,
             SUM(urun_fiyat * urun_miktar) AS toplam_gelir
             FROM urun GROUP BY yil, urun_ad ORDER BY yil, toplam_gelir DESC;";
+
             $fire = mysqli_query($conn, $sql);
                 while ($result = mysqli_fetch_assoc($fire)) {
                 echo "['".$result["urun_ad"]."',".$result["toplam_miktar"]."],";}
             ?>
             ]);
-
+          
             var options = {
             
             hAxis: {
@@ -48,7 +52,10 @@
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
             chart.draw(data, options);
+            
         }
+
+        
     </script>
     <!-- 2. -->
 
@@ -90,11 +97,29 @@
 <!-- 3.nün php kodu -->
 <?php
 $conn = new mysqli ('localhost', 'root', '', 'kds');
-$query= $conn->query("SELECT kategori.kategori_ad, urun.urun_ad AS en_cok_satan_urun,
-SUM(urun.urun_miktar) AS toplam_satis_miktar
-FROM kategori JOIN urun ON kategori.kategori_id = urun.kategori_id
-GROUP BY kategori.kategori_id
-ORDER BY kategori.kategori_id, toplam_satis_miktar DESC; ");
+$query= $conn->query("WITH sira AS (
+  SELECT
+    kategori.kategori_ad,
+    urun.urun_ad AS en_cok_satan_urun,
+    SUM(urun.urun_miktar) AS toplam_satis_miktar,
+    RANK() OVER (PARTITION BY kategori.kategori_id ORDER BY SUM(urun.urun_miktar) DESC) AS sira_numarasi
+  FROM
+    kategori
+    JOIN urun ON kategori.kategori_id = urun.kategori_id
+  GROUP BY
+    kategori.kategori_id, urun.urun_id
+)
+SELECT
+  kategori_ad,
+  en_cok_satan_urun,
+  toplam_satis_miktar
+FROM
+  sira
+WHERE
+  sira_numarasi <= 3
+ORDER BY
+  kategori_ad, sira_numarasi;
+; ");
 
 $kategori_ad = array();
 $en_cok_satan_urun = array();
@@ -107,7 +132,7 @@ foreach ($query as $data) {
 }
 
 ?>
-        <script>
+<script>
 const labels = <?php echo json_encode($kategori_ad)?>;
 const data = {
   labels: labels,
@@ -187,5 +212,6 @@ const config = {
           chart.draw(data, options);
         }
       </script>
+
 </body>
 </html>

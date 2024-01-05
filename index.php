@@ -352,10 +352,10 @@
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#piechart" data-toggle="tab">Area</a>
+                      <a class="nav-link active" href="#piechart" data-toggle="tab">Pie</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#line" data-toggle="tab">Donut</a>
+                      <a class="nav-link" href="#line" data-toggle="tab">Line</a>
                     </li>
                   </ul>
                 </div>
@@ -536,14 +536,14 @@
               <div class="card-footer bg-transparent">
                 <div class="row">
                   <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                    <input type="text" class="knob" data-readonly="true" value="70" data-width="60" data-height="60"
                            data-fgColor="#39CCCC">
 
                     <div class="text-white"> 2022 Yıl Gelir Oranı</div>
                   </div>
                   <!-- ./col -->
                   <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                    <input type="text" class="knob" data-readonly="true" value="80" data-width="60" data-height="60"
                            data-fgColor="#39CCCC">
 
                     <div class="text-white"> 2023 Yıl Gelir Oranı</div>

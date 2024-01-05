@@ -1,36 +1,36 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['personel_id'])) {
-    $personelId = $_POST['personel_id'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['urun_id'])) {
+    $urunId = $_POST['urun_id'];
 
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "personel_takip";
+    $database = "kds";
 
     $connection = new mysqli($servername, $username, $password, $database);
     if ($connection->connect_error) {
         die("Connection failed" . $connection->connect_error);
     }
 
-    $personelAdi = $_POST['personel_adi'];
-    $personelSoyadi = $_POST['personel_soyadi'];
-    $personelTc = $_POST['personel_tc'];
-    $personelMail = $_POST['personel_mail'];
-    $personelTel = $_POST['personel_tel'];
-    $personelTurId = $_POST['personel_tur_id'];
+    $urunAd = $_POST['urun_ad'];
+    $urunFiyat = $_POST['urun_fiyat'];
+    $kategoriId = $_POST['kategori_id'];
+    $urunMiktar = $_POST['urun_miktar'];
+    $urunTarih = $_POST['urun_tarih'];
+    $kategoriAd= $_POST['kategori_ad'];
 
-    $sql = "UPDATE personel SET 
-        personel_adi = ?, 
-        personel_soyadi = ?, 
-        personel_tc = ?, 
-        personel_mail = ?, 
-        personel_tel = ?, 
-        personel_tur_id = ?
-        WHERE personel_id = ?";
+    $sql = "UPDATE urun SET 
+        urun_ad = ?, 
+        urun_fiyat = ?, 
+        kategori_id = ?, 
+        urun_miktar = ?, 
+        urun_tarih = ?, 
+        kategori_ad = ?
+        WHERE urun_id = ?";
 
     $stmt = $connection->prepare($sql);
 
-    $stmt->bind_param("ssssssi", $personelAdi, $personelSoyadi, $personelTc, $personelMail, $personelTel, $personelTurId, $personelId);
+    $stmt->bind_param("siiiss", $urunAd, $urunFiyat, $kategoriId, $urunMiktar, $urunTarih, $personelTurId, $personelId);
 
     if ($stmt->execute()) {
         // Başarılı bir şekilde güncellendiğinde kursiyer.php sayfasına yönlendirme yapabilirsiniz
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['personel_id'])) {
 
 } else {
     // Hatalı veya eksik parametrelerle erişim durumunda başka bir sayfaya yönlendirme yapabilirsiniz
-    header("Location: panel.php");
+    header("Location: data.php");
     exit();
 }
 ?>

@@ -90,11 +90,29 @@
 <!-- 3.nün php kodu -->
 <?php
 $conn = new mysqli ('localhost', 'root', '', 'kds');
-$query= $conn->query("SELECT kategori.kategori_ad, urun.urun_ad AS en_cok_satan_urun,
-SUM(urun.urun_miktar) AS toplam_satis_miktar
-FROM kategori JOIN urun ON kategori.kategori_id = urun.kategori_id
-GROUP BY kategori.kategori_id
-ORDER BY kategori.kategori_id, toplam_satis_miktar DESC; ");
+$query= $conn->query("WITH sira AS (
+  SELECT
+    kategori.kategori_ad,
+    urun.urun_ad AS en_cok_satan_urun,
+    SUM(urun.urun_miktar) AS toplam_satis_miktar,
+    RANK() OVER (PARTITION BY kategori.kategori_id ORDER BY SUM(urun.urun_miktar) DESC) AS sira_numarasi
+  FROM
+    kategori
+    JOIN urun ON kategori.kategori_id = urun.kategori_id
+  GROUP BY
+    kategori.kategori_id, urun.urun_id
+)
+SELECT
+  kategori_ad,
+  en_cok_satan_urun,
+  toplam_satis_miktar
+FROM
+  sira
+WHERE
+  sira_numarasi <= 3
+ORDER BY
+  kategori_ad, sira_numarasi;
+; ");
 
 $kategori_ad = array();
 $en_cok_satan_urun = array();

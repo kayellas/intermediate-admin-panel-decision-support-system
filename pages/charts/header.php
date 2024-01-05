@@ -171,8 +171,9 @@
     <label for="filterDate">Yıla Göre Filtrele:</label>
     <select id="filterDate"  onchange="applyFilters()">
     <option value="all">Hepsi</option>
-    <option value="today">2023</option>
-    <option value="thisWeek">2022</option>
+    <option value="2024">2024</option>
+    <option value="2023">2023</option>
+    <option value="2022">2022</option>
       <!-- Diğer tarih seçenekleri -->
     </select>
   </div>

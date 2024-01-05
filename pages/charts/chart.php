@@ -30,6 +30,9 @@
               <div class="card-body">
                 <div class="chart">
                   <div id="curve_chart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></div>
+                  <input onchange="filterDate()" type="date" id="startdate">
+                  <input onchange="filterDate()" type="date" name="" id="enddate">
+                
                 </div>
               </div>
               <!-- /.card-body -->
@@ -51,7 +54,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div id="line" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></div>
+                <div id="line" style="min-height: 400px; height: 400px; max-height: 400px; max-width: 100%;"></div>
               </div>
               <!-- /.card-body -->
             </div>
@@ -102,7 +105,7 @@
               </div>
               <div class="card-body">
                 <div class="chart-body">
-                  <div id="piechart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></div>
+                  <div id="piechart" style="min-height: 380px; height: 380px; max-height: 380px; max-width: 100%;"></div>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -123,7 +126,7 @@
                 </div>
               </div>
               <div class="card-body" id="bar">
-                <canvas id="myCharti" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                <canvas id="myCharti" style="min-height: 400px; height: 400px; max-height:400px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
